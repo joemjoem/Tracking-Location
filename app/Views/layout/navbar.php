@@ -14,14 +14,14 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="/">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
 
   <!-- Nav Item - Users -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="/page/users">
       <i class="fa-solid fa-users"></i>
       <span>users</span></a>
   </li>

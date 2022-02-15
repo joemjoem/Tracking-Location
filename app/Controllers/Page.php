@@ -8,4 +8,9 @@ class Page extends BaseController
   {
     echo view('page/dashboard');
   }
+
+  public function users()
+  {
+    echo view('page/users');
+  }
 }
