@@ -28,7 +28,7 @@
 
   <!-- Nav Item - Add Users -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="/page/addUsers">
       <i class="fa-solid fa-plus"></i>
       <span>Add Users</span></a>
   </li>

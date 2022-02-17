@@ -13,4 +13,9 @@ class Page extends BaseController
   {
     echo view('page/users');
   }
+
+  public function addUsers()
+  {
+    echo view('page/addUsers');
+  }
 }
