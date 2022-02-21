@@ -72,9 +72,19 @@
           </div>
           <div class="card mb-3">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <div class="user d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Nama : Users uji coba</h5>
+                <p>Status: Online</p>
+              </div>
+              <p>Jabatan : HRD</p>
+              <div class="status-bateray d-flex align-items-center">
+                <p>Status Baterai : 100% </p>
+                <i class="fa-solid fa-battery-full mb-3"></i>
+              </div>
+              <div class="look-location">
+                <p class="card-text">Lokasi : Medokan Ayu, Rungkut, Surabaya City, East Java 60295</p>
+                <a href="" class="detail">Lihat Lokasi</a>
+              </div>
             </div>
           </div>
         </div>
@@ -98,6 +108,7 @@
 
   <!-- maps script -->
   <script src="/js/script.js"></script>
+  <script src="/js/detailMpas.js"></script>
 
 </body>
 

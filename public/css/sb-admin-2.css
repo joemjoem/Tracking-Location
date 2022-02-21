@@ -67,6 +67,13 @@
   height: 300px;
 }
 
+.modal-content {
+  width: 900px !important;
+  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .sidebar {
   height: 100vh;
 }
@@ -11314,42 +11321,6 @@ a:focus {
 
 .card .card-header[data-toggle="collapse"].collapsed::after {
   content: "\f105";
-}
-
-.chart-area {
-  position: relative;
-  height: 10rem;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .chart-area {
-    height: 20rem;
-  }
-}
-
-.chart-bar {
-  position: relative;
-  height: 10rem;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .chart-bar {
-    height: 20rem;
-  }
-}
-
-.chart-pie {
-  position: relative;
-  height: 15rem;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .chart-pie {
-    height: calc(20rem - 43px) !important;
-  }
 }
 
 .bg-login-image {
