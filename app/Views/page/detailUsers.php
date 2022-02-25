@@ -1,6 +1,9 @@
-<?= $this->extend('/layout/template'); ?>
+<?=
+$this->extend('layout/template');
+?>
 
-<?= $this->section('content') ?>
+<?= $this->section('content')  ?>
+
 <div id="content-wrapper" class="d-flex flex-column">
 
   <!-- Main Content -->
@@ -9,7 +12,7 @@
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-      <!-- Sidebar Toggle (Topbar) -->
+      <!-- sidebar icon for mobile version -->
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
@@ -26,10 +29,10 @@
         </div>
       </form>
 
-      <!-- Topbar Navbar -->
+      <!-- Topbar admin fitur -->
       <ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <!-- Nav Item - Search Dropdown (only on mobile version) -->
         <li class="nav-item dropdown no-arrow d-sm-none">
           <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-search fa-fw"></i>
@@ -49,7 +52,7 @@
           </div>
         </li>
 
-        <!-- Nav Item - Alerts -->
+        <!-- Nav Item - Alerts(notifikasion) -->
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
@@ -98,7 +101,7 @@
           </div>
         </li>
 
-        <!-- Nav Item - Messages -->
+        <!-- Nav Item - pesan -->
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
@@ -112,7 +115,7 @@
             </h6>
             <a class="dropdown-item d-flex align-items-center" href="#">
               <div class="dropdown-list-image mr-3">
-                <img class="rounded-circle" src="/img/undraw_profile_1.svg" alt="...">
+                <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                 <div class="status-indicator bg-success"></div>
               </div>
               <div class="font-weight-bold">
@@ -123,7 +126,7 @@
             </a>
             <a class="dropdown-item d-flex align-items-center" href="#">
               <div class="dropdown-list-image mr-3">
-                <img class="rounded-circle" src="/img/undraw_profile_2.svg" alt="...">
+                <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                 <div class="status-indicator"></div>
               </div>
               <div>
@@ -134,7 +137,7 @@
             </a>
             <a class="dropdown-item d-flex align-items-center" href="#">
               <div class="dropdown-list-image mr-3">
-                <img class="rounded-circle" src="/img/undraw_profile_3.svg" alt="...">
+                <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                 <div class="status-indicator bg-warning"></div>
               </div>
               <div>
@@ -160,13 +163,13 @@
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
-        <!-- Nav Item - User Information -->
+        <!-- Nav Item - Admin Information -->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
             <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
           </a>
-          <!-- Dropdown - User Information -->
+          <!-- Dropdown - Admin Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#">
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -198,80 +201,37 @@
 
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Users</h1>
-        <a href="/page/addUsers" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-plus fa-sm text-white-50"></i> Add Users</a>
+        <h1 class="h3 mb-0 text-gray-800">Detail User</h1>
+        <a href="/" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fa-solid fa-angle-left fa-sm text-white-50"></i> Kembali</a>
       </div>
 
       <!-- Content Row -->
+
       <div class="row">
 
-        <!-- All Admin -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                    All Admin</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-users fa-2x text-gray-300"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- All Users card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                    All Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-users fa-2x text-gray-300"></i>
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-12">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Lokasi User</h6>
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Online Users card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
+            <!-- Card Body -->
             <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Online Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-globe fa-2x text-gray-300"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Offline Users -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-danger shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Offline Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-exclamation fa-2x text-gray-300"></i>
-                </div>
+              <div class="display-maps">
+                <div id="map"></div>
               </div>
             </div>
           </div>
@@ -287,44 +247,40 @@
           <!-- Project Card Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary"> Users</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <?= $this->include('/layout/table.php'); ?>
+              <div class="user d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Nama : Users uji coba</h5>
+                <p>Status: Online</p>
+              </div>
+              <p>Jabatan : HRD</p>
+              <div class="status-bateray d-flex align-items-center">
+                <p class="mx-2">Status Baterai : 100% </p>
+                <i class="fa-solid fa-battery-full mb-3"></i>
+              </div>
+              <div class="look-location d-flex justify-content-between align-items-end">
+                <p class="card-text mb-0">Lokasi : Medokan Ayu, Rungkut, Surabaya City, East Java 60295</p>
+                <div class="btn-aksi">
+                  <a href="" class="btn btn-warning btn-icon-split px-3">Edit</a>
+                  <a href="" class="btn btn-danger btn-icon-split px-3">Delete</a>
+                </div>
               </div>
             </div>
-            <div class="card-pagination d-flex justify-content-end">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
           </div>
+
         </div>
       </div>
     </div>
     <!-- /.container-fluid -->
+
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
-  <?= $this->include('/layout/footer'); ?>
+  <?= $this->include('layout/footer'); ?>
   <!-- End of Footer -->
 
 </div>
-<!-- End of Content Wrapper -->
+
 <?= $this->endsection(); ?>
