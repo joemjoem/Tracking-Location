@@ -250,7 +250,19 @@ $this->extend('layout/template');
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <?= $this->include('/layout/table.php'); ?>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama</th>
+                      <th>Jabatan</th>
+                      <th>Lokasi</th>
+                      <th>Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-body">
+                  </tbody>
+                </table>
               </div>
             </div>
             <div class="card-pagination d-flex justify-content-end">

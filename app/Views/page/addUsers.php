@@ -176,18 +176,19 @@
       <div class="row">
 
         <div class="col-lg-6 mb-4">
-          <form>
+          <form action="/page/save" method="POST">
+            <?= csrf_field(); ?>
             <div class="mb-3">
               <label for="nama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="nama" aria-describedby="emailHelp">
+              <input type="text" class="form-control" id="nama" name="nama">
             </div>
             <div class="mb-3">
               <label for="nomorid" class="form-label">Nomor ID Alat</label>
-              <input type="text" class="form-control" id="nomorid">
+              <input type="text" class="form-control" id="nomorid" name="nomorid">
             </div>
             <div class="mb-3">
               <label for="jabatan" class="form-label">Jabatan:</label>
-              <select id="jabatan" class=" form-control">
+              <select id="jabatan" name="jabatan" class=" form-control">
                 <option>.......</option>
                 <option value="HRD">HRD</option>
                 <option value="programer">Programer</option>

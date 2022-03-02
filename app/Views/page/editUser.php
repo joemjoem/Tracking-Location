@@ -1,4 +1,4 @@
-<?= $this->extend('/layout/template'); ?>
+<?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content') ?>
 <div id="content-wrapper" class="d-flex flex-column">
@@ -14,40 +14,11 @@
         <i class="fa fa-bars"></i>
       </button>
 
-      <!-- Topbar Search -->
-      <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-          <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search fa-sm"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-
       <!-- Topbar Navbar -->
       <ul class="navbar-nav ml-auto">
 
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
-          <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-search fa-fw"></i>
-          </a>
-          <!-- Dropdown - Messages -->
-          <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-            <form class="form-inline mr-auto w-100 navbar-search">
-              <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
+
 
         <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
@@ -198,143 +169,54 @@
 
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Users</h1>
-        <a href="/page/addUsers" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-plus fa-sm text-white-50"></i> Add Users</a>
+        <h1 class="h3 mb-0 text-gray-800">Edit Data User</h1>
       </div>
 
       <!-- Content Row -->
       <div class="row">
 
-        <!-- All Admin -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                    All Admin</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-users fa-2x text-gray-300"></i>
-                </div>
-              </div>
+        <div class="col-lg-6 mb-4">
+          <form action="/data/update" method="POST">
+            <?= csrf_field(); ?>
+            <input type="hidden" name="id" id="id" value="<?= $detail["id"] ?>">
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="nama" name="nama" value="<?= $detail["nama"] ?>">
             </div>
-          </div>
-        </div>
-
-        <!-- All Users card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                    All Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-users fa-2x text-gray-300"></i>
-                </div>
-              </div>
+            <div class="mb-3">
+              <label for="nomorid" class="form-label">Nomor ID Alat</label>
+              <input type="text" class="form-control" id="nomorid" name="nomorid" value="<?= $detail["id"] ?>">
             </div>
-          </div>
-        </div>
-
-        <!-- Online Users card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Online Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-globe fa-2x text-gray-300"></i>
-                </div>
-              </div>
+            <div class="mb-3">
+              <label for="jabatan" class="form-label">Jabatan:</label>
+              <select id="jabatan" name="jabatan" class=" form-control">
+                <option><?= $detail["jabatan"] ?></option>
+                <option value="HRD">HRD</option>
+                <option value="programer">Programer</option>
+                <option value="bisnis manajer">Bisnis Manajer</option>
+              </select>
             </div>
-          </div>
-        </div>
-
-        <!-- Offline Users -->
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-danger shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                    Offline Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
-                </div>
-                <div class="col-auto">
-                  <i class="fa-solid fa-exclamation fa-2x text-gray-300"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
 
       <!-- Content Row -->
-      <div class="row">
 
-        <!-- Content Column -->
-        <div class="col-lg-12 mb-4">
-
-          <!-- Project Card Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary"> Users</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama</th>
-                      <th>Jabatan</th>
-                      <th>Lokasi</th>
-                      <th>Detail</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-body">
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="card-pagination d-flex justify-content-end">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- /.container-fluid -->
+
   </div>
   <!-- End of Main Content -->
 
   <!-- Footer -->
-  <?= $this->include('/layout/footer'); ?>
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Your Website 2021</span>
+      </div>
+    </div>
+  </footer>
   <!-- End of Footer -->
 
 </div>

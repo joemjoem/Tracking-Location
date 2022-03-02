@@ -33,12 +33,12 @@ class Database extends Config
     public $default = [
         'DSN'      => '',
         'hostname' => 'localhost',
-        'username' => '',
+        'username' => 'root',
         'password' => '',
-        'database' => '',
+        'database' => 'TL',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
-        'pConnect' => false,
+        'pConnect' => true,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
         'charset'  => 'utf8',
         'DBCollat' => 'utf8_general_ci',
@@ -48,6 +48,7 @@ class Database extends Config
         'strictOn' => false,
         'failover' => [],
         'port'     => 3306,
+        'save_queries' => TRUE
     ];
 
     /**

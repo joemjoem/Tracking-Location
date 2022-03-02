@@ -251,19 +251,22 @@ $this->extend('layout/template');
             </div>
             <div class="card-body">
               <div class="user d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Nama : Users uji coba</h5>
-                <p>Status: Online</p>
+                <h5 class="card-title">Nama : <?= $detail["nama"]; ?></h5>
+                <p>Status: <?= $detail["status"]; ?></p>
               </div>
-              <p>Jabatan : HRD</p>
+              <p>Jabatan : <?= $detail["jabatan"]; ?></p>
               <div class="status-bateray d-flex align-items-center">
-                <p class="mx-2">Status Baterai : 100% </p>
-                <i class="fa-solid fa-battery-full mb-3"></i>
+                <p>Status Baterai : <?= $detail["baterai"]; ?>% </p>
+                <i class="fa-solid fa-battery-full mb-3 mx-2"></i>
               </div>
               <div class="look-location d-flex justify-content-between align-items-end">
                 <p class="card-text mb-0">Lokasi : Medokan Ayu, Rungkut, Surabaya City, East Java 60295</p>
                 <div class="btn-aksi">
-                  <a href="" class="btn btn-warning btn-icon-split px-3">Edit</a>
-                  <a href="" class="btn btn-danger btn-icon-split px-3">Delete</a>
+                  <a href="/page/edit/<?= $detail["nama"]; ?>" class="btn btn-warning btn-icon-split px-3">Edit</a>
+                  <form action="/data/delete/<?= $detail["id"]; ?>" method="POST" class="d-inline">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger btn-icon-split px-3" onclick="return confirm('apakah anda yakin?')"> Delete</button>
+                  </form>
                 </div>
               </div>
             </div>

@@ -25,9 +25,9 @@
 // }
 
 // map.on('click', onMapClick);
-
 var map = L.map('map').setView([51.505, -0.09], 13);
 var api = "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU";
+$.getJSON('http://localhost:8080/page/getDataUsers', function(data){
 var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -36,6 +36,7 @@ var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     zoomOffset: -1
 }).addTo(map);
 
+// menghubungkan dengan API geocodeSerice
 var geocodeService = L.esri.Geocoding.geocodeService({
     apikey: "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU" // replace with your api key - https://developers.arcgis.com
 });
@@ -49,7 +50,7 @@ var geocodeService = L.esri.Geocoding.geocodeService({
 //     .openOn(map);
     
     // tambahan
-    $.getJSON('http://localhost:8080/page/getDataUsers', function(data){
+    
       $.each(data, function(i, dat){
         var marker = L.marker([data[i]['log'], data[i]['lat']]).addTo(map)
         // .bindPopup(result.address.Match_addr).openPopup(); 
@@ -59,13 +60,6 @@ var geocodeService = L.esri.Geocoding.geocodeService({
             .setContent('I am a standalone popup.')
             .openOn(map);
         
-            geocodeService.reverse().latlng([data[i]['log'], data[i]['lat']]).run(function (error, result) {
-              if (error) {
-                return;
-              }
-              
-              console.log(result.address.Match_addr);
-            });
       });
     });
 
