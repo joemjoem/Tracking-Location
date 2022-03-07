@@ -260,7 +260,7 @@ $this->extend('layout/template');
                 <i class="fa-solid fa-battery-full mb-3 mx-2"></i>
               </div>
               <div class="look-location d-flex justify-content-between align-items-end">
-                <p class="card-text mb-0">Lokasi : Medokan Ayu, Rungkut, Surabaya City, East Java 60295</p>
+                <p class="card-text mb-0">Lokasi : <?= $detail["real_address"]; ?></p>
                 <div class="btn-aksi">
                   <a href="/page/edit/<?= $detail["nama"]; ?>" class="btn btn-warning btn-icon-split px-3">Edit</a>
                   <form action="/data/delete/<?= $detail["id"]; ?>" method="POST" class="d-inline">
@@ -285,5 +285,36 @@ $this->extend('layout/template');
   <!-- End of Footer -->
 
 </div>
+<script>
+  var map = L.map('map').setView([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>], 13);
+  var api = "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU";
+  var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1
+  }).addTo(map);
+
+  var marker = L.marker([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>]).addTo(map)
+    .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+  var popup = L.popup()
+    .setLatLng([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>])
+    .setContent('I am here.')
+    .openOn(map);
+
+  // tambahan
+
+
+  function onMapClick(e) {
+    popup
+      .setLatLng(e.latlng)
+      .setContent('You clicked the map at ' + e.latlng.toString())
+      .openOn(map);
+  }
+
+  map.on('click', onMapClick);
+</script>
 
 <?= $this->endsection(); ?>

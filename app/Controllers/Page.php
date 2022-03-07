@@ -15,12 +15,20 @@ class Page extends BaseController
 
   public function index()
   {
-    echo view('page/dashboard');
+    $data = [
+      'user' => $this->usersModel->findAll()
+    ];
+
+    // dd($data);
+    echo view('page/dashboard', $data);
   }
 
   public function users()
   {
-    echo view('page/users');
+    $data = [
+      'user' => $this->usersModel->findAll()
+    ];
+    echo view('page/users', $data);
   }
 
   public function addUsers()

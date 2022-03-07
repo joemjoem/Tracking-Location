@@ -81,9 +81,9 @@
   <script src="https://kit.fontawesome.com/0e63b91b89.js" crossorigin="anonymous"></script>
 
   <!-- maps script -->
-  <script src="/js/script.js"></script>
-  <script src="/js/detailMpas.js"></script>
-  <script src="/js/tableUser.js"></script>
+  <!-- <script src="/js/script.js"></script> -->
+  <!-- <script src="/js/detailMpas.js"></script> -->
+  <!-- <script src="/js/tableUser.js"></script> -->
 </body>
 
 </html>

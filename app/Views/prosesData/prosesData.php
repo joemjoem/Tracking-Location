@@ -14,7 +14,7 @@
     let baterai = <?= $baterai; ?>;
     let datalog = <?= $log; ?>;
     let datalat = <?= $lat; ?>;
-    // http://localhost:8080/Data/inputDataArduino?no_alat=0000000002&baterai=80&log=-7.334828527677&lat=112.8129251088566
+    // http://localhost:8080/Data/index?no_alat=0000000002&baterai=80&log=-7.334828527677&lat=112.8129251088566
 
     // leaflet API
     var api = "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU";
@@ -28,16 +28,10 @@
       if (error) {
         return;
       }
-      console.log(result.address.Match_addr);
-      let dat = "no_alat=" + no_alat + "&baterai=" + baterai + "&log=" + datalog + "&lat=" + datalat;
-      $.ajax({
-        type: "POST",
-        data: "no_alat=" + no_alat + "&baterai=" + baterai + "&log=" + datalog + "&lat=" + datalat,
-        url: "http://localhost:8080/Data/inputDataArduino",
-        success: function(result) {
-          window.location = "http://localhost:8080/Data/inputDataArduino?" + dat;
-        }
-      });
+      let real = result.address.Match_addr;
+      let dat = "no_alat=" + no_alat + "&baterai=" + baterai + "&log=" + datalog + "&lat=" + datalat + "&real=" +
+        real;
+      window.location = "http://localhost:8080/Data/inputDataArduino?" + dat;
     });
   </script>
 </div>

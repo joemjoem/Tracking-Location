@@ -10,7 +10,7 @@ class UsersModel extends Model
   protected $table = 'userData';
   protected $useTimestamps = true;
   // protected $allowedFields = ['nama', 'no_alat', 'jabatan', 'baterai', 'log', 'lat'];
-  protected $allowedFields = ['id', 'nama', 'jabatan', 'baterai', 'status', 'log', 'lat'];
+  protected $allowedFields = ['id', 'nama', 'jabatan', 'baterai', 'status', 'log', 'lat', 'real_address'];
 
   public function getDetail($nama)
   {

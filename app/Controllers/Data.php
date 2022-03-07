@@ -52,7 +52,8 @@ class Data extends BaseController
     $data = array(
       'baterai' => $this->request->getVar('baterai'),
       'log' => $this->request->getVar('log'),
-      'lat' => $this->request->getVar('lat')
+      'lat' => $this->request->getVar('lat'),
+      'real_address' => $this->request->getVar('real')
     );
     $this->usersModel->update($noAlat, $data);
   }
