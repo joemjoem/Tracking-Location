@@ -83,7 +83,7 @@
   <!-- maps script -->
   <!-- <script src="/js/script.js"></script> -->
   <!-- <script src="/js/detailMpas.js"></script> -->
-  <!-- <script src="/js/tableUser.js"></script> -->
+  <script src="/js/tableUser.js"></script>
 </body>
 
 </html>

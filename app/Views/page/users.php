@@ -231,7 +231,7 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                     All Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $all; ?></div>
                 </div>
                 <div class="col-auto">
                   <i class="fa-solid fa-users fa-2x text-gray-300"></i>
@@ -249,7 +249,7 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                     Online Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $online; ?></div>
                 </div>
                 <div class="col-auto">
                   <i class="fa-solid fa-globe fa-2x text-gray-300"></i>
@@ -267,7 +267,7 @@
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                     Offline Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $offline; ?></div>
                 </div>
                 <div class="col-auto">
                   <i class="fa-solid fa-exclamation fa-2x text-gray-300"></i>
@@ -298,17 +298,19 @@
                       <th>Nama</th>
                       <th>Jabatan</th>
                       <th>Lokasi</th>
+                      <th>Status</th>
                       <th>Detail</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 1; ?>
+                    <?php $i = 1 + (5 * ($currentPage - 1)); ?>
                     <?php foreach ($user as $u) : ?>
                       <tr>
                         <td><?= $i++; ?></td>
                         <td><?= $u["nama"]; ?></td>
                         <td><?= $u["jabatan"]; ?></td>
                         <td><?= $u["real_address"]; ?></td>
+                        <td><?= $u["status"]; ?></td>
                         <td><a href="/page/detailUser/<?= $u["nama"]; ?>" class="detail">Lihat Detail</a></td>
                       </tr>
                     <?php endforeach; ?>
@@ -316,25 +318,7 @@
                 </table>
               </div>
             </div>
-            <div class="card-pagination d-flex justify-content-end">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            <?= $pager->links('userdata', 'user_pagination') ?>
           </div>
         </div>
       </div>

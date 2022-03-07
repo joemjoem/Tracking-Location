@@ -15,8 +15,11 @@ class Page extends BaseController
 
   public function index()
   {
+    $currentPage = $this->request->getVar('page_userdata') ? $this->request->getVar('page_userdata') : 1;
     $data = [
-      'user' => $this->usersModel->findAll()
+      'user' => $this->usersModel->getOnlineUser(),
+      'pager' => $this->usersModel->pager,
+      'currentPage' => $currentPage
     ];
 
     // dd($data);
@@ -25,8 +28,14 @@ class Page extends BaseController
 
   public function users()
   {
+    $currentPage = $this->request->getVar('page_userdata') ? $this->request->getVar('page_userdata') : 1;
     $data = [
-      'user' => $this->usersModel->findAll()
+      'user' => $this->usersModel->paginate(5, 'userdata'),
+      'pager' => $this->usersModel->pager,
+      'offline' => $this->usersModel->countOfflineUser(),
+      'online' => $this->usersModel->countOnlineUser(),
+      'all' => $this->usersModel->countAllUser(),
+      'currentPage' => $currentPage
     ];
     echo view('page/users', $data);
   }
@@ -52,12 +61,13 @@ class Page extends BaseController
 
   public function save()
   {
-    $coba = 0.0;
+
     // dd($this->request->getVar());
     $this->usersModel->save([
       'id' => $this->request->getVar('nomorid'),
       'nama' => $this->request->getvar('nama'),
       'jabatan' => $this->request->getVar('jabatan'),
+      'status' => 'offline'
     ]);
 
     return redirect()->to('page/addUsers');
@@ -70,5 +80,13 @@ class Page extends BaseController
     ];
     // dd($data);
     return view('/page/editUser', $data);
+  }
+
+  public function coba()
+  {
+    $data = [
+      'data' => $this->usersModel->getOfflineUser()
+    ];
+    dd($data);
   }
 }
