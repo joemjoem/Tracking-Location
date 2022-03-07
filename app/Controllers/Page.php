@@ -15,9 +15,21 @@ class Page extends BaseController
 
   public function index()
   {
+    $keyword = $this->request->getVar('nama');
+    // if ($keyword) {
+    //   $search = $this->usersModel->search($keyword);
+    // } else {
+    //   $search = $this->usersModel;
+    // }
+
+    if ($keyword) {
+      $search = $keyword;
+    } else {
+      $search = null;
+    }
     $currentPage = $this->request->getVar('page_userdata') ? $this->request->getVar('page_userdata') : 1;
     $data = [
-      'user' => $this->usersModel->getOnlineUser(),
+      'user' => $this->usersModel->getOnlineUser($search),
       'pager' => $this->usersModel->pager,
       'currentPage' => $currentPage
     ];
@@ -28,9 +40,16 @@ class Page extends BaseController
 
   public function users()
   {
+    $keyword = $this->request->getVar('nama');
+    if ($keyword) {
+      $search = $this->usersModel->search($keyword);
+    } else {
+      $search = $this->usersModel;
+    }
+
     $currentPage = $this->request->getVar('page_userdata') ? $this->request->getVar('page_userdata') : 1;
     $data = [
-      'user' => $this->usersModel->paginate(5, 'userdata'),
+      'user' => $search->paginate(5, 'userdata'),
       'pager' => $this->usersModel->pager,
       'offline' => $this->usersModel->countOfflineUser(),
       'online' => $this->usersModel->countOnlineUser(),

@@ -18,9 +18,14 @@ class UsersModel extends Model
     return $this->where(['nama' => $nama])->first();
   }
 
-  public function getOnlineUser()
+  public function getOnlineUser($search)
   {
-    return $this->where(['status' => "online"])->paginate(5, 'userdata');
+    // return $this->where(['status' => "online"])->paginate(5, 'userdata');
+    if ($search != null) {
+      return $this->where(['status' => "online"])->like('nama', $search)->paginate(5, 'userdata');
+    } else {
+      return $this->where(['status' => "online"])->paginate(5, 'userdata');
+    }
   }
 
   public function countOfflineUser()
@@ -36,5 +41,10 @@ class UsersModel extends Model
   public function countAllUser()
   {
     return $this->countAllResults();
+  }
+
+  public function search($keyword)
+  {
+    return $this->table('userdata')->like('nama', $keyword);
   }
 }
