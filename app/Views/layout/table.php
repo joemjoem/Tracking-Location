@@ -17,7 +17,7 @@
         <td><?= $u["nama"]; ?></td>
         <td><?= $u["jabatan"]; ?></td>
         <td><?= $u["real_address"]; ?></td>
-        <td><a href="/page/detailUser/<?= $u["nama"]; ?>" class="detail">Lihat Detail</a></td>
+        <td><a href="/page/detailUser/<?= $u["nama"]; ?>/" class="detail">Lihat Detail</a></td>
       </tr>
     <?php endforeach; ?>
   </tbody>

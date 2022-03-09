@@ -14,6 +14,7 @@
     let baterai = <?= $baterai; ?>;
     let datalog = <?= $log; ?>;
     let datalat = <?= $lat; ?>;
+    let status;
     // http://localhost:8080/Data/index?no_alat=0000000002&baterai=80&log=-7.334828527677&lat=112.8129251088566
 
     // leaflet API
@@ -29,7 +30,7 @@
         return;
       }
       let real = result.address.Match_addr;
-      let dat = "no_alat=" + no_alat + "&baterai=" + baterai + "&log=" + datalog + "&lat=" + datalat + "&real=" +
+      let dat = "no_alat=" + no_alat + "&baterai=" + baterai + "&status" + status + "&log=" + datalog + "&lat=" + datalat + "&real=" +
         real;
       window.location = "http://localhost:8080/Data/inputDataArduino?" + dat;
     });

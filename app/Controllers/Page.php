@@ -61,14 +61,19 @@ class Page extends BaseController
 
   public function addUsers()
   {
-    echo view('page/addUsers');
+    $data = [
+      'title' => 'tambah data user',
+      'validation' => \Config\Services::validation()
+    ];
+    echo view('page/addUsers', $data);
   }
 
-  public function detailUser($nama)
+  public function detailUser($nama, $lokasi = null)
   {
     $data = [
       'title' => 'detail User',
-      'detail' => $this->usersModel->getDetail($nama)
+      'detail' => $this->usersModel->getDetail($nama),
+      'back' => $lokasi
     ];
     return view('page/detailUsers', $data);
   }
@@ -80,6 +85,31 @@ class Page extends BaseController
 
   public function save()
   {
+    if (!$this->validate([
+      'id' => [
+        'rules' => 'required|is_unique[userdata.id]',
+        'errors' => [
+          'required' => '{field} harus ditambahkan',
+          'is_unique' => '{field} sudah terdaftar'
+        ]
+      ],
+      'nama' => [
+        'rules' => 'required|is_unique[userdata.nama]',
+        'errors' => [
+          'required' => '{field} harus ditambahkan',
+          'is_unique' => '{field} sudah terdaftar'
+        ]
+      ],
+      'jabatan' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} harus ditambahkan'
+        ]
+      ]
+    ])) {
+      $validation = \Config\Services::validation();
+      return redirect()->to('/page/addUsers')->withInput()->with('validation', $validation);
+    }
 
     // dd($this->request->getVar());
     $this->usersModel->save([
@@ -89,23 +119,17 @@ class Page extends BaseController
       'status' => 'offline'
     ]);
 
+    session()->setFlashdata('pesan', 'data Berhsail ditambahkan');
     return redirect()->to('page/addUsers');
   }
 
   public function edit($nama)
   {
     $data = [
-      'detail' => $this->usersModel->getDetail($nama)
+      'detail' => $this->usersModel->getDetail($nama),
+      'validation' => \Config\Services::validation()
     ];
     // dd($data);
     return view('/page/editUser', $data);
-  }
-
-  public function coba()
-  {
-    $data = [
-      'data' => $this->usersModel->getOfflineUser()
-    ];
-    dd($data);
   }
 }
