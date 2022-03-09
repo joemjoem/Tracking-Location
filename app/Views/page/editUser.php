@@ -179,22 +179,32 @@
           <form action="/data/update" method="POST">
             <?= csrf_field(); ?>
             <input type="hidden" name="id" id="id" value="<?= $detail["id"] ?>">
+            <input type="hidden" name="keyword_name" id="keyword_name" value="<?= $detail["nama"] ?>">
             <div class="mb-3">
               <label for="nama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="nama" name="nama" value="<?= $detail["nama"] ?>">
+              <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= $detail["nama"] ?>">
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                <?= $validation->getError('nama'); ?>
+              </div>
             </div>
             <div class="mb-3">
               <label for="nomorid" class="form-label">Nomor ID Alat</label>
-              <input type="text" class="form-control" id="nomorid" name="nomorid" value="<?= $detail["id"] ?>">
+              <input type="text" class="form-control <?= ($validation->hasError('nomorid')) ? 'is-invalid' : '' ?>" id="nomorid" name="nomorid" value="<?= $detail["id"] ?>">
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                <?= $validation->getError('nomorid'); ?>
+              </div>
             </div>
             <div class="mb-3">
               <label for="jabatan" class="form-label">Jabatan:</label>
-              <select id="jabatan" name="jabatan" class=" form-control">
+              <select id="jabatan" name="jabatan" class=" form-control <?= ($validation->hasError('jabatan')) ? 'is-invalid' : '' ?>">
                 <option><?= $detail["jabatan"] ?></option>
                 <option value="HRD">HRD</option>
                 <option value="programer">Programer</option>
                 <option value="bisnis manajer">Bisnis Manajer</option>
               </select>
+              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                <?= $validation->getError('jabatan'); ?>
+              </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

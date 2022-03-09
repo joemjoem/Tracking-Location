@@ -36,14 +36,41 @@ class Data extends BaseController
 
   public function update()
   {
+    if (!$this->validate([
+      'nomorid' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} harus ditambahkan'
+        ]
+      ],
+      'nama' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} harus ditambahkan'
+        ]
+      ],
+      'jabatan' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} harus ditambahkan'
+        ]
+      ]
+    ])) {
+      $validation = \Config\Services::validation();
+      $string_error = "/page/edit/" . $this->request->getVar('keyword_name');
+      return redirect()->to($string_error)->withInput()->with('validation', $validation);
+    }
+
     $id = $this->request->getVar('id');
     $data = array(
       'nama' => $this->request->getVar('nama'),
-      'id' => $this->request->getVar('id'),
+      'id' => $this->request->getVar('nomorid'),
       'jabatan' => $this->request->getVar('jabatan')
     );
     $this->usersModel->update($id, $data);
-    return redirect()->to('/page');
+    session()->setFlashdata('update', 'data Berhsail ditambahkan');
+    $string_success = '/page/detailUser/' . $this->request->getVar('nama');
+    return redirect()->to($string_success);
   }
 
   public function inputDataArduino()
@@ -53,8 +80,11 @@ class Data extends BaseController
       'baterai' => $this->request->getVar('baterai'),
       'log' => $this->request->getVar('log'),
       'lat' => $this->request->getVar('lat'),
-      'real_address' => $this->request->getVar('real')
+      'real_address' => $this->request->getVar('real'),
+      'status' => $this->request->getVar('status')
     );
+
+    dd($data);
     $this->usersModel->update($noAlat, $data);
   }
 }

@@ -202,7 +202,7 @@ $this->extend('layout/template');
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Detail User</h1>
-        <a href="/" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fa-solid fa-angle-left fa-sm text-white-50"></i> Kembali</a>
+        <a href="/page/<?= $back; ?>" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fa-solid fa-angle-left fa-sm text-white-50"></i> Kembali</a>
       </div>
 
       <!-- Content Row -->
@@ -249,7 +249,17 @@ $this->extend('layout/template');
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
             </div>
+            <!-- pesan sukses update data -->
             <div class="card-body">
+              <div class="alert-success">
+                <?php if (session()->getFlashdata('update')) : ?>
+                  <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('update'); ?>
+                  </div>
+                <?php endif; ?>
+              </div>
+              <!-- akhir pesan sukses update data -->
+
               <div class="user d-flex justify-content-between align-items-center">
                 <h5 class="card-title">Nama : <?= $detail["nama"]; ?></h5>
                 <p>Status: <?= $detail["status"]; ?></p>
