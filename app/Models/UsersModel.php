@@ -8,7 +8,7 @@ class UsersModel extends Model
 {
   // protected $table = 'user';
   protected $table = 'userData';
-  protected $useTimestamps = true;
+  //protected $useTimestamps = true;
   // protected $allowedFields = ['nama', 'no_alat', 'jabatan', 'baterai', 'log', 'lat'];
   protected $allowedFields = ['id', 'nama', 'jabatan', 'baterai', 'status', 'log', 'lat', 'real_address'];
 
@@ -27,7 +27,7 @@ class UsersModel extends Model
       return $this->where(['status' => "online"])->paginate(5, 'userdata');
     }
   }
-
+  
   public function countOfflineUser()
   {
     return $this->where(['status' => "offline"])->countAllResults();
