@@ -68,7 +68,7 @@ class Data extends BaseController
       'jabatan' => $this->request->getVar('jabatan')
     );
     $this->usersModel->update($id, $data);
-    session()->setFlashdata('update', 'data Berhsail ditambahkan');
+    session()->setFlashdata('update', 'data Berhsail diubah');
     $string_success = '/page/detailUser/' . $this->request->getVar('nama');
     return redirect()->to($string_success);
   }
@@ -84,7 +84,6 @@ class Data extends BaseController
       'status' => $this->request->getVar('status')
     );
 
-    dd($data);
     $this->usersModel->update($noAlat, $data);
   }
 }
