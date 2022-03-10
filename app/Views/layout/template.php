@@ -9,21 +9,21 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tracking Location</title>
+  <title><?= $title; ?></title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Load file icon-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <!-- Load link font nonito  -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link rel="stylesheet" href="/css/sb-admin-2.css">
+  <!-- Load file css-->
+  <link rel="stylesheet" href="/css/style.css">
 
-  <!-- custom for maps -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
   <!-- leaflet reverse -->
   <!-- Load Leaflet from CDN -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" /> -->
+  <!-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script> -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
@@ -37,16 +37,16 @@
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
+  <!-- start: Page Wrapper -->
   <div id="wrapper">
 
     <?= $this->include('layout/navbar'); ?>
     <?= $this->renderSection('content'); ?>
 
   </div>
-  <!-- End of Page Wrapper -->
+  <!-- End : Page Wrapper -->
 
-  <!-- Logout Modal-->
+  <!-- start: Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -64,26 +64,22 @@
       </div>
     </div>
   </div>
+  <!-- end : Logout Modal -->
 
-
-  <!-- Bootstrap core JavaScript-->
+  <!-- Load Bootstrap and JavaScript-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="/vendor/bootstrap/js/bootstrap.js">
 
-  <!-- Core plugin JavaScript-->
+  <!-- Load plugin JavaScript-->
   <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="/js/sb-admin-2.min.js"></script>
+  <!-- <script src="/js/sb-admin-2.min.js"></script> -->
+  <script src="/js/sb-admin-2.js"></script>
 
-  <!-- kit for icon -->
+  <!-- Load kit for icon -->
   <script src="https://kit.fontawesome.com/0e63b91b89.js" crossorigin="anonymous"></script>
-
-  <!-- maps script -->
-  <!-- <script src="/js/script.js"></script> -->
-  <!-- <script src="/js/detailMpas.js"></script> -->
-  <script src="/js/tableUser.js"></script>
 </body>
 
 </html>

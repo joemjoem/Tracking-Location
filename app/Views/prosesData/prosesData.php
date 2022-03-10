@@ -1,3 +1,4 @@
+<!-- load layout Template -->
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
@@ -8,7 +9,9 @@
 <p><?= $lat; ?></p>
 
 <div>
+  <!-- load Jquery CDN -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- get data from arduino -->
   <script>
     let no_alat = <?= $no_alat; ?>;
     let baterai = <?= $baterai; ?>;
@@ -20,18 +23,21 @@
     // leaflet API
     var api = "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU";
 
-    // menghubungkan dengan API geocodeSerice
+    // connect to API geocodeSerice
     var geocodeService = L.esri.Geocoding.geocodeService({
       apikey: "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU" // replace with your api key - https://developers.arcgis.com
     });
 
+    // convert longitude and latitude to real address
     geocodeService.reverse().latlng([datalog, datalat]).run(function(error, result) {
       if (error) {
         return;
       }
       let real = result.address.Match_addr;
+      // create link
       let dat = "no_alat=" + no_alat + "&baterai=" + baterai + "&status" + status + "&log=" + datalog + "&lat=" + datalat + "&real=" +
         real;
+      // send link for update data in databasse
       window.location = "http://localhost:8080/Data/inputDataArduino?" + dat;
     });
   </script>

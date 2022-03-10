@@ -15,12 +15,8 @@ class Page extends BaseController
 
   public function index()
   {
+    // get keyword
     $keyword = $this->request->getVar('nama');
-    // if ($keyword) {
-    //   $search = $this->usersModel->search($keyword);
-    // } else {
-    //   $search = $this->usersModel;
-    // }
 
     if ($keyword) {
       $search = $keyword;
@@ -29,12 +25,13 @@ class Page extends BaseController
     }
     $currentPage = $this->request->getVar('page_userdata') ? $this->request->getVar('page_userdata') : 1;
     $data = [
+      'title' => 'Dashboard',
+      'search_destination' => 'index',
       'user' => $this->usersModel->getOnlineUser($search),
       'pager' => $this->usersModel->pager,
       'currentPage' => $currentPage
     ];
 
-    // dd($data);
     echo view('page/dashboard', $data);
   }
 
@@ -49,6 +46,8 @@ class Page extends BaseController
 
     $currentPage = $this->request->getVar('page_userdata') ? $this->request->getVar('page_userdata') : 1;
     $data = [
+      'title' => 'Users',
+      'search_destination' => 'users',
       'user' => $search->paginate(5, 'userdata'),
       'pager' => $this->usersModel->pager,
       'offline' => $this->usersModel->countOfflineUser(),
@@ -62,7 +61,7 @@ class Page extends BaseController
   public function addUsers()
   {
     $data = [
-      'title' => 'tambah data user',
+      'title' => 'Tambah User',
       'validation' => \Config\Services::validation()
     ];
     echo view('page/addUsers', $data);
@@ -71,7 +70,7 @@ class Page extends BaseController
   public function detailUser($nama, $lokasi = null)
   {
     $data = [
-      'title' => 'detail User',
+      'title' => 'Detail User',
       'detail' => $this->usersModel->getDetail($nama),
       'back' => $lokasi
     ];
@@ -126,6 +125,7 @@ class Page extends BaseController
   public function edit($nama)
   {
     $data = [
+      'title' => 'Edit User',
       'detail' => $this->usersModel->getDetail($nama),
       'validation' => \Config\Services::validation()
     ];
