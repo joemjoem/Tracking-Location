@@ -15,14 +15,15 @@
                                 <?= view('Myth\Auth\Views\_message_block') ?>
                                 <form action="<?= route_to('register') ?>" method="post" class="user">
                                     <?= csrf_field() ?>
-                                    <!-- username -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name='username' placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
-                                    </div>
+
                                     <!-- email -->
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>">
                                         <small id="emailHelp" class="form-text text-muted"><?= lang('Auth.weNeverShare') ?></small>
+                                    </div>
+                                    <!-- username -->
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name='username' placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
                                     </div>
                                     <!-- password -->
                                     <div class="form-group row">
@@ -35,6 +36,7 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-primary btn-block"><?= lang('Auth.register') ?></button>
+
                                 </form>
                                 <hr>
                                 <div class="text-center">
