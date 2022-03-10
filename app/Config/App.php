@@ -12,7 +12,7 @@ class App extends BaseConfig
      * --------------------------------------------------------------------------
      *
      * URL to your CodeIgniter root. Typically this will be your base URL,
-     * WITH a trailing slash:
+     * WITH a trailing slash:           
      *
      *    http://example.com/
      *

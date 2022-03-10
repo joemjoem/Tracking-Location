@@ -43,7 +43,7 @@
             </div>
             <div class="mb-3">
               <label for="nomorid" class="form-label">Nomor ID Alat</label>
-              <input type="text" class="form-control <?= ($validation->hasError('id')) ? 'is-invalid' : '' ?>" id="nomorid" name="nomorid">
+              <input type="text" class="form-control <?= ($validation->hasError('id')) ? 'is-invalid' : '' ?>" id="id" name="id">
               <div id="validationServerUsernameFeedback" class="invalid-feedback">
                 <?= $validation->getError('id'); ?>
               </div>

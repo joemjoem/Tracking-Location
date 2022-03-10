@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\UsersModel;
-use Config\Validation;
 
 class Page extends BaseController
 {
@@ -106,20 +105,20 @@ class Page extends BaseController
         ]
       ]
     ])) {
-      $validation = \Config\Services::validation();
-      return redirect()->to('/page/addUsers')->withInput()->with('validation', $validation);
+      return redirect()->to('/page/addUsers')->withInput();
     }
 
-    // dd($this->request->getVar());
-    $this->usersModel->save([
-      'id' => $this->request->getVar('nomorid'),
-      'nama' => $this->request->getvar('nama'),
-      'jabatan' => $this->request->getVar('jabatan'),
-      'status' => 'offline'
-    ]);
+    //dd($this->request->getVar());
+    $this->usersModel->save(
+      [
+        'id' => $this->request->getVar('id'),
+        'nama' => $this->request->getvar('nama'),
+        'jabatan' => $this->request->getVar('jabatan')
+      ]
+    );
 
     session()->setFlashdata('pesan', 'data Berhsail ditambahkan');
-    return redirect()->to('page/addUsers');
+    return redirect()->to('/users');
   }
 
   public function edit($nama)
