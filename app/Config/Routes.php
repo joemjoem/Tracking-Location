@@ -32,7 +32,12 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Page::index');
+<<<<<<< HEAD
 $routes->get('/Data', 'Data::index');
+=======
+$routes->get('/users', 'Page::users');
+//$routes->get('/Data', 'Data::index');
+>>>>>>> 1567009674f9de308ca3db8b1019c23b1d40b2c7
 // $routes->delete('/Data/(:segment)', 'Data::delete/$1');
 
 /*

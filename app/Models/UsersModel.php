@@ -9,6 +9,7 @@ class UsersModel extends Model
   protected $table = 'userdata';
   protected $useTimestamps = true;
   protected $useAutoIncrement = false;
+
   // protected $allowedFields = ['nama', 'no_alat', 'jabatan', 'baterai', 'log', 'lat'];
   protected $allowedFields = ['id', 'nama', 'slug', 'jabatan', 'baterai', 'status', 'log', 'lat', 'real_address'];
 

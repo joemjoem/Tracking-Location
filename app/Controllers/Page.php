@@ -6,6 +6,7 @@ use App\Models\UsersModel;
 use Myth\Auth\Models\LoginModel;
 use Config\Validation;
 
+
 class Page extends BaseController
 {
   protected $usersModel;
@@ -113,8 +114,7 @@ class Page extends BaseController
         ]
       ]
     ])) {
-      $validation = \Config\Services::validation();
-      return redirect()->to('/page/addUsers')->withInput()->with('validation', $validation);
+      return redirect()->to('/page/addUsers')->withInput();
     }
 
     $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $this->request->getVar('nama'));
@@ -127,7 +127,7 @@ class Page extends BaseController
     ]);
 
     session()->setFlashdata('pesan', 'data Berhsail ditambahkan');
-    return redirect()->to('page/addUsers');
+    return redirect()->to('/users');
   }
 
   public function edit($nama)
