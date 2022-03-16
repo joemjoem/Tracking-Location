@@ -6,16 +6,16 @@ use CodeIgniter\Model;
 
 class UsersModel extends Model
 {
-  // protected $table = 'user';
-  protected $table = 'userData';
-  //protected $useTimestamps = true;
+  protected $table = 'userdata';
+  protected $useTimestamps = true;
+  protected $useAutoIncrement = false;
   // protected $allowedFields = ['nama', 'no_alat', 'jabatan', 'baterai', 'log', 'lat'];
-  protected $allowedFields = ['id', 'nama', 'jabatan', 'baterai', 'status', 'log', 'lat', 'real_address'];
+  protected $allowedFields = ['id', 'nama', 'slug', 'jabatan', 'baterai', 'status', 'log', 'lat', 'real_address'];
 
-  public function getDetail($nama)
+  public function getDetail($slug)
   {
     // dd($this->where(['nama' => $nama])->first());
-    return $this->where(['nama' => $nama])->first();
+    return $this->where(['slug' => $slug])->first();
   }
 
   public function getOnlineUser($search)
@@ -27,7 +27,7 @@ class UsersModel extends Model
       return $this->where(['status' => "online"])->paginate(5, 'userdata');
     }
   }
-  
+
   public function countOfflineUser()
   {
     return $this->where(['status' => "offline"])->countAllResults();
@@ -46,5 +46,12 @@ class UsersModel extends Model
   public function search($keyword)
   {
     return $this->table('userdata')->like('nama', $keyword);
+  }
+
+
+  // realttime
+  public function realtimeStatus($slug)
+  {
+    return $this->where(['slug' => $slug])->first();
   }
 }

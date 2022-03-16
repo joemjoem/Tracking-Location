@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\UsersModel;
+use Myth\Auth\Models\LoginModel;
 use Config\Validation;
 
 class Data extends BaseController
 {
   protected $usersModel;
+  protected $loginModel;
   public function __construct()
   {
     $this->usersModel = new UsersModel();
+    $this->loginModel = new LoginModel();
   }
 
   public function index()
@@ -62,8 +65,10 @@ class Data extends BaseController
     }
 
     $id = $this->request->getVar('id');
+    $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $this->request->getVar('nama'));
     $data = array(
       'nama' => $this->request->getVar('nama'),
+      'slug' => $slug,
       'id' => $this->request->getVar('nomorid'),
       'jabatan' => $this->request->getVar('jabatan')
     );

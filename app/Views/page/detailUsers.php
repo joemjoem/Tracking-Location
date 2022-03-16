@@ -19,7 +19,7 @@ $this->extend('layout/template');
 
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Detail User</h1>
+        <h1 class="h3 mb-0 text-gray-800"><?= $detail["nama"]; ?></h1>
         <a href="/page/<?= $back; ?>" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i class="fa-solid fa-angle-left fa-sm text-white-50"></i> Kembali</a>
       </div>
 
@@ -49,7 +49,7 @@ $this->extend('layout/template');
             <!-- Card Body -->
             <div class="card-body">
               <div class="display-maps">
-                <div id="map"></div>
+                <div id="maps"></div>
               </div>
             </div>
           </div>
@@ -79,16 +79,21 @@ $this->extend('layout/template');
               <!-- akhir pesan sukses update data -->
 
               <div class="user d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Nama : <?= $detail["nama"]; ?></h5>
-                <p>Status: <?= $detail["status"]; ?></p>
+                <!-- <h5 class="card-title">Nama : <?= $detail["nama"]; ?></h5> -->
+                <h5 class="card-title">Nama : <span class="nama"></span></h5>
+                <!-- <p>Status: <?= $detail["status"]; ?></p> -->
+                <p>Status: <span class="statusRyan"></span></p>
               </div>
-              <p>Jabatan : <?= $detail["jabatan"]; ?></p>
+              <!-- <p>Jabatan : <?= $detail["jabatan"]; ?></p> -->
+              <p>Jabatan : <span class="jabatan"></span></p>
               <div class="status-bateray d-flex align-items-center">
-                <p>Status Baterai : <?= $detail["baterai"]; ?>% </p>
+                <!-- <p>Status Baterai : <?= $detail["baterai"]; ?>% </p> -->
+                <p>Status Baterai : <span class="baterai"></span>% </p>
                 <i class="fa-solid fa-battery-full mb-3 mx-2"></i>
               </div>
               <div class="look-location d-flex justify-content-between align-items-end">
-                <p class="card-text mb-0">Lokasi : <?= $detail["real_address"]; ?></p>
+                <!-- <p class="card-text mb-0">Lokasi : <?= $detail["real_address"]; ?></p> -->
+                <p class="card-text mb-0">Lokasi : <span class="realAddress"></span></p>
                 <div class="btn-aksi">
                   <a href="/page/edit/<?= $detail["nama"]; ?>" class="btn btn-warning btn-icon-split px-3">Edit</a>
                   <form action="/data/delete/<?= $detail["id"]; ?>" method="POST" class="d-inline">
@@ -104,7 +109,6 @@ $this->extend('layout/template');
       </div>
     </div>
     <!-- /.container-fluid -->
-
   </div>
   <!-- End of Main Content -->
 
@@ -115,11 +119,13 @@ $this->extend('layout/template');
 </div>
 <!-- end: content wrapper -->
 <!-- javascript code for display maps -->
-<script>
+<!-- <script>
   // variabel for set center of map
   var map = L.map('map').setView([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>], 13);
+
   // variabel for save API-key of asri-leaflet
   var api = "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU";
+
   // variabel for set konfiguration of map
   var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -147,6 +153,64 @@ $this->extend('layout/template');
   }
 
   map.on('click', onMapClick);
+
+  // realtime
+  setInterval(function() {
+    $('.statusRyan').load("http://localhost:8080/page/statusUser/<?= $detail["slug"]; ?>");
+  }, 1000);
+</script> -->
+
+<script>
+  // realtime
+  setInterval(function() {
+    // $.getJSON("http://localhost:8080/page/statusUser/<?= $detail["slug"]; ?>", function(data) {
+    //   console.log(data);
+    // });
+    // let lokal;
+    // console.log(lokal.load("http://localhost:8080/page/statusUser/<?= $detail["slug"]; ?>"));
+
+
+
+    $('.statusRyan').load("http://localhost:8080/page/statusUser/<?= $detail["slug"]; ?>");
+    $('.nama').load("http://localhost:8080/page/namaUser/<?= $detail["slug"]; ?>");
+    $('.jabatan').load("http://localhost:8080/page/jabatanUser/<?= $detail["slug"]; ?>");
+    $('.baterai').load("http://localhost:8080/page/bateraiUser/<?= $detail["slug"]; ?>");
+    $('.realAddress').load("http://localhost:8080/page/realAdrressUser/<?= $detail["slug"]; ?>");
+  }, 1000);
+
+  // variabel for set center of map
+  var maps = L.map('maps').setView([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>], 13);
+
+  // variabel for save API-key of asri-leaflet
+  var api = "AAPKddb5110a35434ebda889e935236b017f7qiPwFxID6UHxUg4gv3bRAdyTM9VVdQmJxNglXUbvwWEL37CU7CdybpwH1Qt4WwU";
+
+  // variabel for set konfiguration of map
+  var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1
+  }).addTo(maps);
+
+  // variabel for set popup when Admin click the map
+  var marker = L.marker([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>]).addTo(maps)
+    .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+  var popup = L.popup()
+    .setLatLng([<?= $detail["log"]; ?>, <?= $detail["lat"]; ?>])
+    .setContent('I am here.')
+    .openOn(maps);
+
+  // event which will execution when Admin click the map
+  function onMapClick(e) {
+    popup
+      .setLatLng(e.latlng)
+      .setContent('You clicked the map at ' + e.latlng.toString())
+      .openOn(maps);
+  }
+
+  maps.on('click', onMapClick);
 </script>
 
 <?= $this->endsection(); ?>

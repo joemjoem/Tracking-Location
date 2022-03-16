@@ -54,7 +54,7 @@ $this->extend('layout/template');
                         <td><?= $u["nama"]; ?></td>
                         <td><?= $u["jabatan"]; ?></td>
                         <td><?= $u["real_address"]; ?></td>
-                        <td><a href="/page/detailUser/<?= $u["nama"]; ?>/" class="detail">Lihat Detail</a></td>
+                        <td><a href="/page/detailUser/<?= $u["nama"]; ?>/index" class="detail">Lihat Detail</a></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -71,6 +71,7 @@ $this->extend('layout/template');
     <!-- end: Page Content -->
   </div>
   <!-- End :  Main Content -->
+
 
   <!-- Load Footer -->
   <?= $this->include('layout/footer'); ?>

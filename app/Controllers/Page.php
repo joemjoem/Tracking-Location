@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\UsersModel;
+use Myth\Auth\Models\LoginModel;
 use Config\Validation;
 
 class Page extends BaseController
 {
   protected $usersModel;
+  protected $loginModel;
   public function __construct()
   {
     $this->usersModel = new UsersModel();
+    $this->loginModel = new LoginModel();
   }
 
   public function index()
@@ -53,6 +56,7 @@ class Page extends BaseController
       'offline' => $this->usersModel->countOfflineUser(),
       'online' => $this->usersModel->countOnlineUser(),
       'all' => $this->usersModel->countAllUser(),
+      'admin' => $this->loginModel->countAllAdmin(),
       'currentPage' => $currentPage
     ];
     echo view('page/users', $data);
@@ -67,13 +71,15 @@ class Page extends BaseController
     echo view('page/addUsers', $data);
   }
 
-  public function detailUser($nama, $lokasi = null)
+  public function detailUser($slug, $lokasi = null)
   {
+
     $data = [
       'title' => 'Detail User',
-      'detail' => $this->usersModel->getDetail($nama),
+      'detail' => $this->usersModel->getDetail($slug),
       'back' => $lokasi
     ];
+    // dd($data);
     return view('page/detailUsers', $data);
   }
 
@@ -84,8 +90,9 @@ class Page extends BaseController
 
   public function save()
   {
+
     if (!$this->validate([
-      'id' => [
+      'nomorid' => [
         'rules' => 'required|is_unique[userdata.id]',
         'errors' => [
           'required' => '{field} harus ditambahkan',
@@ -110,10 +117,11 @@ class Page extends BaseController
       return redirect()->to('/page/addUsers')->withInput()->with('validation', $validation);
     }
 
-    // dd($this->request->getVar());
+    $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $this->request->getVar('nama'));
     $this->usersModel->save([
       'id' => $this->request->getVar('nomorid'),
       'nama' => $this->request->getvar('nama'),
+      'slug' => $slug,
       'jabatan' => $this->request->getVar('jabatan'),
       'status' => 'offline'
     ]);
@@ -131,5 +139,66 @@ class Page extends BaseController
     ];
     // dd($data);
     return view('/page/editUser', $data);
+  }
+  // realtime
+
+  public function statusUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["status"]);
+  }
+
+  public function namaUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["nama"]);
+  }
+
+  public function jabatanUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["jabatan"]);
+  }
+
+  public function bateraiUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["baterai"]);
+  }
+
+  public function logUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["log"]);
+  }
+
+  public function latUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["lat"]);
+  }
+
+  public function realAdrressUser($slug)
+  {
+    $data = $this->usersModel->realtimeStatus($slug);
+    // dd($data["status"]);
+    echo ($data["real_address"]);
+  }
+
+  public function coba($nama, $lokasi = null)
+  {
+    // $this->statusUser($nama);
+    $data = [
+      'title' => 'Detail User',
+      'detail' => $this->usersModel->getDetail($nama),
+      'back' => $lokasi
+    ];
+    return view('page/coba', $data);
   }
 }
